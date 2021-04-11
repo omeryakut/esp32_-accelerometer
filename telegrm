@@ -1,0 +1,18 @@
+
+def telegram_bot_sendtext(bot_message):
+    
+    bot_token = ''
+    bot_chatID = ''
+    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
+
+    response = urequests.get(send_text)
+
+    return response.json()
+
+
+
+
+def telegram_bot_receive_last_text():
+    respons = urequests.get('https://api.telegram.org/botXXXXX/getUpdates')
+    gelen_son_mesaj = list(respons.json().items())[0][1][len(list(respons.json().items())[0][1])-1]['message']['text']
+    return gelen_son_mesaj
